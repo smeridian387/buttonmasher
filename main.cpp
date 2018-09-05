@@ -8,12 +8,29 @@ int main()
 {
 	// make a variable called a gamewindow of type RenderWindow
 	sf::RenderWindow gameWindow;
-	gameWindow.create(sf::VideoMode(800, 600), "button masher");
+	gameWindow.create(sf::VideoMode::getDesktopMode(), "button masher",
+		sf::Style::Titlebar | sf::Style::Close);
 
 	//game loop
-	while (true)
+	//runs every frame untill the game window is closed
+	while (gameWindow.isOpen())
 	{
-		// TODO: Check for input
+		// Check for input
+		sf::Event gameEvent;
+
+		while (gameWindow.pollEvent(gameEvent))
+		{
+			//TOD:process events
+
+			// check if the event is the close event
+			if (gameEvent.type == sf::Event::Closed)
+			{
+				//close the game window
+				gameWindow.close();
+			}
+		}
+
+
 
 		// TODO: update game state
 
