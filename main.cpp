@@ -1,7 +1,7 @@
 //included library section
 
 #include <SFML/Graphics.hpp>
-
+#include <SFML\Audio.hpp>
 
 //entry point for the program
 int main()
@@ -20,6 +20,11 @@ int main()
 
 	sf::Sprite buttonSprite;
 	buttonSprite.setTexture(buttonTexture);
+
+	//create music
+	sf::Music gameMusic;
+	gameMusic.openFromFile("audio\music.ogg");
+	//gameMusic.play();
 
 	buttonSprite.setPosition(
 		gameWindow.getSize().x / 2 - buttonTexture.getSize().x / 2,
