@@ -38,6 +38,8 @@ int main()
 	titleText.setFont(gameFont);
 	titleText.setString("Button Masher!");
 	titleText.setCharacterSize(100);
+	titleText.setFillColor(sf::Color::Red);
+	titleText.setStyle(sf::Text::Bold | sf::Text::Italic);
 	titleText.setPosition(gameWindow.getSize().x / 2 - titleText.getLocalBounds().width / 2, 30);
 
 	//game loop-------------------------------------------------------------------
