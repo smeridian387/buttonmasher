@@ -42,6 +42,14 @@ int main()
 	titleText.setStyle(sf::Text::Bold | sf::Text::Italic);
 	titleText.setPosition(gameWindow.getSize().x / 2 - titleText.getLocalBounds().width / 2, 30);
 
+	//create author text
+	sf::Text authorText;
+	authorText.setFont(gameFont);
+	authorText.setString("By Allen M");
+	authorText.setCharacterSize(50);
+	authorText.setFillColor(sf::Color::White);
+	authorText.setStyle(sf::Text::Bold | sf::Text::Italic);
+	authorText.setPosition(gameWindow.getSize().x / 2 - titleText.getLocalBounds().width / 2, 150);
 	//game loop-------------------------------------------------------------------
 	//runs every frame untill the game window is closed
 	while (gameWindow.isOpen())
@@ -72,6 +80,7 @@ int main()
 		//draw everything
 		gameWindow.draw(buttonSprite);
 		gameWindow.draw(titleText);
+		gameWindow.draw(authorText);
 		//Display window content on screen
 		gameWindow.display();
 	}	
