@@ -21,9 +21,8 @@ int main()
 	sf::Sprite buttonSprite;
 	buttonSprite.setTexture(buttonTexture);
 	buttonSprite.setPosition(
-		gameWindow.getSize().x / 2 - buttonTexture.getSize().x / 2,
-		gameWindow.getSize().y / 2 - buttonTexture.getSize().y / 2
-	);
+	gameWindow.getSize().x / 2 - buttonTexture.getSize().x / 2,
+	gameWindow.getSize().y / 2 - buttonTexture.getSize().y / 2);
 	//create music
 	sf::Music gameMusic;
 	gameMusic.openFromFile("audio/music.ogg");
@@ -61,6 +60,17 @@ int main()
 	scoreText.setCharacterSize(16);
 	scoreText.setFillColor(sf::Color::White);
 	scoreText.setPosition(30, 30);
+
+	//timer text
+	sf::Text timerText;
+	timerText.setFont(gameFont);
+	timerText.setString("Time Remaining: 0");
+	timerText.setCharacterSize(16);
+	timerText.setFillColor(sf::Color::White);
+	timerText.setPosition(gameWindow.getSize().x - timerText.getLocalBounds().width - 30, 30);
+
+
+
 	//game loop-------------------------------------------------------------------
 	//runs every frame untill the game window is closed
 	while (gameWindow.isOpen())
@@ -95,6 +105,7 @@ int main()
 		gameWindow.draw(titleText);
 		gameWindow.draw(authorText);
 		gameWindow.draw(scoreText);
+		gameWindow.draw(timerText);
 		//Display window content on screen
 		gameWindow.display();
 	}	
