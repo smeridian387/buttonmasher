@@ -23,10 +23,13 @@ int main()
 	buttonSprite.setPosition(
 	gameWindow.getSize().x / 2 - buttonTexture.getSize().x / 2,
 	gameWindow.getSize().y / 2 - buttonTexture.getSize().y / 2);
+
 	//create music
 	sf::Music gameMusic;
 	gameMusic.openFromFile("audio/music.ogg");
 	//gameMusic.play();
+
+	//create clicking sound effect
 
 	//create font
 	sf::Font gameFont;
@@ -86,7 +89,13 @@ int main()
 		while (gameWindow.pollEvent(gameEvent))
 		{
 			//TOD:process events
-
+			if (gameEvent.type == sf::Event::MouseButtonPressed)
+			{
+				if (buttonSprite.getGlobalBounds().contains(gameEvent.mouseButton.x, gameEvent.mouseButton.y))
+				{
+					score = score+1;
+				}
+			}
 			// check if the event is the close event
 			if (gameEvent.type == sf::Event::Closed)
 			{
@@ -101,7 +110,6 @@ int main()
 		timerText.setString("Time Remaining: " + std::to_string((int)timeRemaining.asSeconds()));
 
 		// TODO: update game state
-		score = score + 1;
 		scoreText.setString("Score " + std::to_string(score));
 
 		
