@@ -69,6 +69,11 @@ int main()
 	timerText.setFillColor(sf::Color::White);
 	timerText.setPosition(gameWindow.getSize().x - timerText.getLocalBounds().width - 30, 30);
 
+	//add timer
+	sf::Time timeLimit = sf::seconds(10.0f);
+	sf::Time timeRemaining = timeLimit;
+	sf::Clock gameClock;
+
 
 
 	//game loop-------------------------------------------------------------------
@@ -90,7 +95,10 @@ int main()
 			}
 		}
 
-
+		//update the clock each frame
+		sf::Time frameTime = gameClock.restart();
+		timeRemaining = timeRemaining - frameTime;
+		timerText.setString("Time Remaining: " + std::to_string((int)timeRemaining.asSeconds()));
 
 		// TODO: update game state
 		score = score + 1;
