@@ -8,6 +8,8 @@ int main()
 {
 	//game setup-------------------------------------------------------------------
 
+	//is the game playing or not? bool
+	bool playing = false;
 
 	// make a variable called a gamewindow of type RenderWindow
 	sf::RenderWindow gameWindow;
@@ -98,10 +100,20 @@ int main()
 			{
 				if (buttonSprite.getGlobalBounds().contains(gameEvent.mouseButton.x, gameEvent.mouseButton.y))
 				{
-					//add 1 to the score when the player clicks on the button
-					score = score+1;
-					//play the click sound when the player clicks the button
-					clickSound.play();
+					if (playing == true)
+					{
+						//add 1 to the score when the player clicks on the button
+						score = score + 1;
+						//play the click sound when the player clicks the button
+						clickSound.play();
+					}
+					else
+					{
+						playing = true;
+						score = 0;
+						timeRemaining = timeLimit;
+					}
+					
 				}
 			}
 			// check if the event is the close event
@@ -114,7 +126,15 @@ int main()
 
 		//update the clock each frame
 		sf::Time frameTime = gameClock.restart();
-		timeRemaining = timeRemaining - frameTime;
+		if (playing == true)
+		{
+			timeRemaining = timeRemaining - frameTime;
+			if (timeRemaining.asSeconds() <= 0)
+			{
+				playing = false;
+			}
+		}
+		
 		timerText.setString("Time Remaining: " + std::to_string((int)timeRemaining.asSeconds()));
 
 		// TODO: update game state
