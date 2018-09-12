@@ -30,6 +30,11 @@ int main()
 	//gameMusic.play();
 
 	//create clicking sound effect
+	sf::SoundBuffer clickBuffer;
+	clickBuffer.loadFromFile("audio/buttonclick.ogg");
+	sf::Sound clickSound;
+	clickSound.setBuffer(clickBuffer);
+
 
 	//create font
 	sf::Font gameFont;
@@ -93,7 +98,10 @@ int main()
 			{
 				if (buttonSprite.getGlobalBounds().contains(gameEvent.mouseButton.x, gameEvent.mouseButton.y))
 				{
+					//add 1 to the score when the player clicks on the button
 					score = score+1;
+					//play the click sound when the player clicks the button
+					clickSound.play();
 				}
 			}
 			// check if the event is the close event
