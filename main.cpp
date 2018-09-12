@@ -84,6 +84,14 @@ int main()
 	sf::Time timeRemaining = timeLimit;
 	sf::Clock gameClock;
 
+	//prompts 
+	sf::Text promptText;
+	promptText.setFont(gameFont);
+	promptText.setString("Click the button to start the game!");
+	promptText.setCharacterSize(16);
+	promptText.setFillColor(sf::Color::White);
+	promptText.setPosition(gameWindow.getSize().x / 2 - promptText.getLocalBounds().width / 2, 200);
+
 
 
 	//game loop-------------------------------------------------------------------
@@ -109,9 +117,11 @@ int main()
 					}
 					else
 					{
+						
 						playing = true;
 						score = 0;
 						timeRemaining = timeLimit;
+						promptText.setString("Click the button as fast as you can!");
 					}
 					
 				}
@@ -132,6 +142,7 @@ int main()
 			if (timeRemaining.asSeconds() <= 0)
 			{
 				playing = false;
+				promptText.setString("Your final score was: " + std::to_string(score) + " Click the button to start new game!");
 			}
 		}
 		
@@ -150,6 +161,7 @@ int main()
 		gameWindow.draw(authorText);
 		gameWindow.draw(scoreText);
 		gameWindow.draw(timerText);
+		gameWindow.draw(promptText);
 		//Display window content on screen
 		gameWindow.display();
 	}	
